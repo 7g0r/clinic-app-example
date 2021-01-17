@@ -14,13 +14,13 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Doctor  extends AbstractEntity {
+public class Doctor extends AbstractEntity {
 
     private String name;
 
     private String secondName;
 
-    @OneToMany(mappedBy = "doctor",orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "doctor", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Set<Visit> visits;
 
 

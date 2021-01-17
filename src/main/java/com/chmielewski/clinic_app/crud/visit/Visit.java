@@ -4,6 +4,8 @@ import com.chmielewski.clinic_app.crud.abstracts.AbstractEntity;
 import com.chmielewski.clinic_app.crud.doctor.Doctor;
 import com.chmielewski.clinic_app.crud.user.User;
 import com.chmielewski.clinic_app.utils.VisitStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,9 +32,12 @@ public class Visit extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private VisitStatus status;
 
-    @CreationTimestamp
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @ApiModelProperty(dataType = "java.sql.Date")
     private LocalDate visitSarts;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @ApiModelProperty(dataType = "java.sql.Date")
     private LocalDate visitEnds;
 
 
