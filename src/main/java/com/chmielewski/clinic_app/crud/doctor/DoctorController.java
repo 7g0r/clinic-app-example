@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Doctors")
+@RequestMapping("/api/doctors")
 public class DoctorController extends AbstractController<DoctorService, DoctorDto> {
 
     protected DoctorController(DoctorService service) {

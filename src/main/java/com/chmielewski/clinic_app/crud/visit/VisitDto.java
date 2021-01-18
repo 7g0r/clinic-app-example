@@ -4,28 +4,33 @@ import com.chmielewski.clinic_app.crud.abstracts.AbstractDto;
 import com.chmielewski.clinic_app.crud.doctor.DoctorDto;
 import com.chmielewski.clinic_app.crud.user.UserDto;
 import com.chmielewski.clinic_app.utils.VisitStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class VisitDto extends AbstractDto {
 
-    private DoctorDto doctor;
-    private UserDto user;
+    private DoctorDto doctorDto;
+    private UserDto userDto;
     private VisitStatus status;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate visitStarts;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate visitEnds;
 
 
     public static final class VisitDtoBuilder {
         private Long id;
-        private DoctorDto doctor;
-        private UserDto user;
+        private DoctorDto doctorDto;
+        private UserDto userDto;
         private VisitStatus status;
         private LocalDate visitStarts;
         private LocalDate visitEnds;
@@ -42,13 +47,13 @@ public class VisitDto extends AbstractDto {
             return this;
         }
 
-        public VisitDtoBuilder withDoctor(DoctorDto doctor) {
-            this.doctor = doctor;
+        public VisitDtoBuilder withDoctorDto(DoctorDto doctorDto) {
+            this.doctorDto = doctorDto;
             return this;
         }
 
-        public VisitDtoBuilder withUser(UserDto user) {
-            this.user = user;
+        public VisitDtoBuilder withUserDto(UserDto userDto) {
+            this.userDto = userDto;
             return this;
         }
 
@@ -70,8 +75,8 @@ public class VisitDto extends AbstractDto {
         public VisitDto build() {
             VisitDto visitDto = new VisitDto();
             visitDto.setId(id);
-            visitDto.setDoctor(doctor);
-            visitDto.setUser(user);
+            visitDto.setDoctorDto(doctorDto);
+            visitDto.setUserDto(userDto);
             visitDto.setStatus(status);
             visitDto.setVisitStarts(visitStarts);
             visitDto.setVisitEnds(visitEnds);

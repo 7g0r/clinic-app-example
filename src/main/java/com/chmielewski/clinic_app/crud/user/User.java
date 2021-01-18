@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,19 +19,14 @@ public class User extends AbstractEntity {
 
     private String name;
     private String secondName;
-    private String pin;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "visits_id")
-    private Set<Visit> visits;
+    private Long pin;
 
 
     public static final class UserBuilder {
         private Long id;
         private String name;
         private String secondName;
-        private String pin;
-        private Set<Visit> visits;
+        private Long pin;
 
         private UserBuilder() {
         }
@@ -54,13 +50,8 @@ public class User extends AbstractEntity {
             return this;
         }
 
-        public UserBuilder withPin(String pin) {
+        public UserBuilder withPin(Long pin) {
             this.pin = pin;
-            return this;
-        }
-
-        public UserBuilder withVisits(Set<Visit> visits) {
-            this.visits = visits;
             return this;
         }
 
@@ -70,8 +61,8 @@ public class User extends AbstractEntity {
             user.setName(name);
             user.setSecondName(secondName);
             user.setPin(pin);
-            user.setVisits(visits);
             return user;
         }
     }
 }
+

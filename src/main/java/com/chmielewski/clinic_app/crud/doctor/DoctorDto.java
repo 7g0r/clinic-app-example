@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -20,14 +21,11 @@ public class DoctorDto extends AbstractDto {
     @NotBlank(message = "Doctor's second name must not be null or empty")
     private String secondName;
 
-    private Set<VisitDto> visits;
-
 
     public static final class DoctorDtoBuilder {
         private Long id;
         private String name;
         private String secondName;
-        private Set<VisitDto> visits;
 
         private DoctorDtoBuilder() {
         }
@@ -51,17 +49,11 @@ public class DoctorDto extends AbstractDto {
             return this;
         }
 
-        public DoctorDtoBuilder withVisits(Set<VisitDto> visits) {
-            this.visits = visits;
-            return this;
-        }
-
         public DoctorDto build() {
             DoctorDto doctorDto = new DoctorDto();
             doctorDto.setId(id);
             doctorDto.setName(name);
             doctorDto.setSecondName(secondName);
-            doctorDto.setVisits(visits);
             return doctorDto;
         }
     }
