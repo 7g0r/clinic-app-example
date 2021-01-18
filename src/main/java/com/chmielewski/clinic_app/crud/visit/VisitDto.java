@@ -5,13 +5,17 @@ import com.chmielewski.clinic_app.crud.doctor.DoctorDto;
 import com.chmielewski.clinic_app.crud.user.UserDto;
 import com.chmielewski.clinic_app.utils.VisitStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -21,19 +25,17 @@ public class VisitDto extends AbstractDto {
     private DoctorDto doctorDto;
     private UserDto userDto;
     private VisitStatus status;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate visitStarts;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate visitEnds;
-
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("date")
+    private LocalDateTime visitDate;
 
     public static final class VisitDtoBuilder {
         private Long id;
         private DoctorDto doctorDto;
         private UserDto userDto;
         private VisitStatus status;
-        private LocalDate visitStarts;
-        private LocalDate visitEnds;
+        private LocalDateTime visitDate;
 
         private VisitDtoBuilder() {
         }
@@ -62,13 +64,8 @@ public class VisitDto extends AbstractDto {
             return this;
         }
 
-        public VisitDtoBuilder withVisitStarts(LocalDate visitStarts) {
-            this.visitStarts = visitStarts;
-            return this;
-        }
-
-        public VisitDtoBuilder withVisitEnds(LocalDate visitEnds) {
-            this.visitEnds = visitEnds;
+        public VisitDtoBuilder withVisitDate(LocalDateTime visitDate) {
+            this.visitDate = visitDate;
             return this;
         }
 
@@ -78,9 +75,15 @@ public class VisitDto extends AbstractDto {
             visitDto.setDoctorDto(doctorDto);
             visitDto.setUserDto(userDto);
             visitDto.setStatus(status);
-            visitDto.setVisitStarts(visitStarts);
-            visitDto.setVisitEnds(visitEnds);
+            visitDto.setVisitDate(visitDate);
             return visitDto;
         }
     }
+
+    /*@JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime visitStartTime;*/
+
+
+
 }
