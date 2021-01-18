@@ -4,15 +4,13 @@ import com.chmielewski.clinic_app.crud.abstracts.AbstractEntity;
 import com.chmielewski.clinic_app.crud.doctor.Doctor;
 import com.chmielewski.clinic_app.crud.user.User;
 import com.chmielewski.clinic_app.utils.VisitStatus;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "visits")
@@ -32,21 +30,35 @@ public class Visit extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private VisitStatus status;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @ApiModelProperty(dataType = "java.sql.Date")
-    private LocalDate visitSarts;
+    private LocalDate visitStarts;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @ApiModelProperty(dataType = "java.sql.Date")
     private LocalDate visitEnds;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Visit)) return false;
+        Visit visit = (Visit) o;
+        return Objects.equals(getId(), visit.getId()) &&
+                Objects.equals(doctor, visit.doctor) &&
+                Objects.equals(user, visit.user) &&
+                status == visit.status &&
+                Objects.equals(visitStarts, visit.visitStarts) &&
+                Objects.equals(visitEnds, visit.visitEnds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 
     public static final class VisitBuilder {
         private Long id;
         private Doctor doctor;
         private User user;
         private VisitStatus status;
-        private LocalDate visitSarts;
+        private LocalDate visitStarts;
         private LocalDate visitEnds;
 
         private VisitBuilder() {
@@ -76,8 +88,8 @@ public class Visit extends AbstractEntity {
             return this;
         }
 
-        public VisitBuilder withVisitSarts(LocalDate visitSarts) {
-            this.visitSarts = visitSarts;
+        public VisitBuilder withVisitStarts(LocalDate visitStarts) {
+            this.visitStarts = visitStarts;
             return this;
         }
 
@@ -92,7 +104,7 @@ public class Visit extends AbstractEntity {
             visit.setDoctor(doctor);
             visit.setUser(user);
             visit.setStatus(status);
-            visit.setVisitSarts(visitSarts);
+            visit.setVisitStarts(visitStarts);
             visit.setVisitEnds(visitEnds);
             return visit;
         }

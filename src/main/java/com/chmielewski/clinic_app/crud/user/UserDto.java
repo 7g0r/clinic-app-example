@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -16,16 +17,14 @@ public class UserDto extends AbstractDto {
 
     private String name;
     private String secondName;
-    private String pin;
-    private Set<VisitDto> visit;
+    private Long pin;
 
 
     public static final class UserDtoBuilder {
         private Long id;
         private String name;
         private String secondName;
-        private String pin;
-        private Set<VisitDto> visit;
+        private Long pin;
 
         private UserDtoBuilder() {
         }
@@ -49,13 +48,8 @@ public class UserDto extends AbstractDto {
             return this;
         }
 
-        public UserDtoBuilder withPin(String pin) {
+        public UserDtoBuilder withPin(Long pin) {
             this.pin = pin;
-            return this;
-        }
-
-        public UserDtoBuilder withVisit(Set<VisitDto> visit) {
-            this.visit = visit;
             return this;
         }
 
@@ -65,7 +59,6 @@ public class UserDto extends AbstractDto {
             userDto.setName(name);
             userDto.setSecondName(secondName);
             userDto.setPin(pin);
-            userDto.setVisit(visit);
             return userDto;
         }
     }
