@@ -13,7 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -48,7 +48,7 @@ public class VisitServiceImpl extends AbstractService<Visit, VisitDto> implement
     @Override
     public Page<VisitDto> findVisitsByDoctorIdAndDate(Long doctorId, LocalDate date) {
         doctorRepository.findById(doctorId).orElseThrow(()-> new NotFoundException(doctorId, Doctor.class.getSimpleName()));
-        List<Visit> visits = visitRepository.findAllByDoctorIdAndVisitStarts(doctorId,date);
+        List<Visit> visits = visitRepository.findByVisitDateAndDoctor(date,doctorId);
         return new PageImpl<>(visitMapper.toListDto(visits));
     }
 }
