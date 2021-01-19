@@ -22,18 +22,19 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class VisitDto extends AbstractDto {
 
-    private DoctorDto doctorDto;
-    private UserDto userDto;
+    private Long doctorId;
+    private Long userId;
     private VisitStatus status;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonProperty("date")
     private LocalDateTime visitDate;
 
+
     public static final class VisitDtoBuilder {
         private Long id;
-        private DoctorDto doctorDto;
-        private UserDto userDto;
+        private Long doctorId;
+        private Long userId;
         private VisitStatus status;
         private LocalDateTime visitDate;
 
@@ -49,13 +50,13 @@ public class VisitDto extends AbstractDto {
             return this;
         }
 
-        public VisitDtoBuilder withDoctorDto(DoctorDto doctorDto) {
-            this.doctorDto = doctorDto;
+        public VisitDtoBuilder withDoctorId(Long doctorId) {
+            this.doctorId = doctorId;
             return this;
         }
 
-        public VisitDtoBuilder withUserDto(UserDto userDto) {
-            this.userDto = userDto;
+        public VisitDtoBuilder withUserId(Long userId) {
+            this.userId = userId;
             return this;
         }
 
@@ -72,18 +73,11 @@ public class VisitDto extends AbstractDto {
         public VisitDto build() {
             VisitDto visitDto = new VisitDto();
             visitDto.setId(id);
-            visitDto.setDoctorDto(doctorDto);
-            visitDto.setUserDto(userDto);
+            visitDto.setDoctorId(doctorId);
+            visitDto.setUserId(userId);
             visitDto.setStatus(status);
             visitDto.setVisitDate(visitDate);
             return visitDto;
         }
     }
-
-    /*@JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonFormat(pattern = "HH:mm:ss")
-    private LocalTime visitStartTime;*/
-
-
-
 }

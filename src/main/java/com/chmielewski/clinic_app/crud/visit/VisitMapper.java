@@ -10,12 +10,12 @@ public interface VisitMapper extends CommonMapper<Visit, VisitDto> {
     VisitMapper INSTANCE = Mappers.getMapper(VisitMapper.class);
 
     @Override
-    @Mapping(source = "user", target = "userDto")
-    @Mapping(source = "doctor",target = "doctorDto")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "doctor.id",target = "doctorId")
     VisitDto toDto(Visit visit);
 
     @Override
-    @Mapping(source = "userDto", target = "user")
-    @Mapping(source = "doctorDto", target ="doctor" )
+    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "doctorId", target ="doctor.id" )
     Visit fromDto(VisitDto dto);
 }
