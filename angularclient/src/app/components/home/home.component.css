@@ -1,0 +1,23 @@
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    overflow-wrap: break-word;
+    padding-right: 5vh;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    max-width: 20vh;
+}
+
+.option-button {
+    margin-right: 1vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e01023;
+    cursor: pointer;
+    text-decoration: underline;
+}

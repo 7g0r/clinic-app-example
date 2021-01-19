@@ -3,6 +3,7 @@
   "project": {
     "name": "angularclient"
   },
+
   "apps": [
     {
       "root": "src",
@@ -21,6 +22,7 @@
       "styles": [
         "styles.css"
       ],
+
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {

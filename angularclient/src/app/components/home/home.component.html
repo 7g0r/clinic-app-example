@@ -1,0 +1,40 @@
+<div class="entity-table">
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID
+        </mat-header-cell>>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>>
+      </ng-container>
+
+      <!-- Second name Column -->
+      <ng-container matColumnDef="secondName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Second Name</mat-header-cell>>
+        <mat-cell *matCellDef="let element"> {{element.secondName}} </mat-cell>>
+      </ng-container>
+
+      <!-- Login Column -->
+      <ng-container matColumnDef="pin">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Pin</mat-header-cell>>
+        <mat-cell *matCellDef="let element"> {{element.pin}} </mat-cell>>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>>
+
+    </mat-table>>
+    <mat-paginator #paginator (page)="pageEvent = refreshData($event)" [length]="page.totalElements"
+                   [pageIndex]="page.number" [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="page.size"
+                   showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>
