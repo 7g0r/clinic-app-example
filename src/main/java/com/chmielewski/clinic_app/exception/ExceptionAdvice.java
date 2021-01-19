@@ -23,6 +23,13 @@ public class ExceptionAdvice {
     }
 
     @ResponseBody
+    @ExceptionHandler(WrongAuthDataException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String wrongAuthDataExceptionHandler(WrongAuthDataException e) {
+        return e.getMessage();
+    }
+
+    @ResponseBody
     @ExceptionHandler(WrongIdException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String wrongIdExceptionHandler(WrongIdException e) {

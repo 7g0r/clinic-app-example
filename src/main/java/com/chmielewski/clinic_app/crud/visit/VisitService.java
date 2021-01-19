@@ -17,5 +17,6 @@ public interface VisitService extends CommonService<VisitDto> {
 
     Page<VisitDto> findVisitsByDoctorIdAndDate(Long doctorId, LocalDate date);
 
+    void changeStatus(Long visitId, Long userId, Long pin);
 
 }
