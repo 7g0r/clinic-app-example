@@ -15,5 +15,4 @@ public interface CommonMapper<E extends AbstractEntity, D extends AbstractDto> {
     List<D> toListDto(List<E> e);
 
     List<E> fromListDto(List<D> d);
-
 }

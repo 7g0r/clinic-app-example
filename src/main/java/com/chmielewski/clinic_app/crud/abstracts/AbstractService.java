@@ -5,12 +5,10 @@ import com.chmielewski.clinic_app.exception.WrongIdException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
 public abstract class AbstractService<E extends AbstractEntity, D extends AbstractDto> implements CommonService<D> {
 
     private final CommonMapper<E, D> commonMapper;
@@ -68,5 +66,4 @@ public abstract class AbstractService<E extends AbstractEntity, D extends Abstra
         commonRepository.deleteById(entity.getId());
         return commonMapper.toDto(entity);
     }
-
 }

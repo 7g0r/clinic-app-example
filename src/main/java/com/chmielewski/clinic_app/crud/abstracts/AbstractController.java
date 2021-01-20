@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public abstract class AbstractController<T extends CommonService<D>, D extends AbstractDto> {
 
     private final T service;

@@ -30,6 +30,13 @@ public class ExceptionAdvice {
     }
 
     @ResponseBody
+    @ExceptionHandler(DoctorBusyException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String doctorBusyExceptionHandler(DoctorBusyException e) {
+        return e.getMessage();
+    }
+
+    @ResponseBody
     @ExceptionHandler(WrongIdException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String wrongIdExceptionHandler(WrongIdException e) {
@@ -70,5 +77,4 @@ public class ExceptionAdvice {
     public String methodArgumentTypeMismatchExceptionHandler(MethodArgumentTypeMismatchException e) {
         return e.getMostSpecificCause().getMessage();
     }
-
 }

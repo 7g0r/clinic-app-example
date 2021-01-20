@@ -6,7 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/api/visits")
@@ -18,7 +17,6 @@ public class VisitController extends AbstractController<VisitService, VisitDto> 
         super(service);
         this.visitService = visitService;
     }
-
 
     @GetMapping(path = "/user/{id}")
     public Page<VisitDto> getVisitsByUserId(@PathVariable("id") Long userId) {
@@ -39,5 +37,4 @@ public class VisitController extends AbstractController<VisitService, VisitDto> 
     public void cancelVisit(@PathVariable("id") Long id, @RequestParam("userId") Long userId, @RequestParam("pin") Long pin) {
         visitService.changeStatus(id, userId, pin);
     }
-
 }

@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "visits")
@@ -31,80 +28,5 @@ public class Visit extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     private VisitStatus status;
-
     private LocalDateTime visitDate;
-
-   /* private LocalTime visitStartTime;
-
-    private LocalTime visitEndsTime;
-*/
-
-  /*  @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Visit)) return false;
-        Visit visit = (Visit) o;
-        return Objects.equals(getId(), visit.getId()) &&
-                Objects.equals(doctor, visit.doctor) &&
-                Objects.equals(user, visit.user) &&
-                status == visit.status &&
-                Objects.equals(visitDate, visit.visitDate) &&
-                Objects.equals(visitStartTime, visit.visitStartTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
-*/
-
-    public static final class VisitBuilder {
-        private Long id;
-        private Doctor doctor;
-        private User user;
-        private VisitStatus status;
-        private LocalDateTime visitDate;
-
-        private VisitBuilder() {
-        }
-
-        public static VisitBuilder aVisit() {
-            return new VisitBuilder();
-        }
-
-        public VisitBuilder withId(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public VisitBuilder withDoctor(Doctor doctor) {
-            this.doctor = doctor;
-            return this;
-        }
-
-        public VisitBuilder withUser(User user) {
-            this.user = user;
-            return this;
-        }
-
-        public VisitBuilder withStatus(VisitStatus status) {
-            this.status = status;
-            return this;
-        }
-
-        public VisitBuilder withVisitDate(LocalDateTime visitDate) {
-            this.visitDate = visitDate;
-            return this;
-        }
-
-        public Visit build() {
-            Visit visit = new Visit();
-            visit.setId(id);
-            visit.setDoctor(doctor);
-            visit.setUser(user);
-            visit.setStatus(status);
-            visit.setVisitDate(visitDate);
-            return visit;
-        }
-    }
 }
