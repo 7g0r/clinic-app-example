@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,6 +27,7 @@ public class Visit extends AbstractEntity {
     @JoinColumn(name = "users_id")
     private User user;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private VisitStatus status;
     private LocalDateTime visitDate;
