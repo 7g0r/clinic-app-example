@@ -3,10 +3,10 @@ import {User} from "./user";
 
 export class Visit {
     id: number;
-    doctorId: number;
-    userId: number;
+    doctor: number;
+    user: number;
     status: string;
-    visitDate: string;
+    date: Date;
 
 
 }

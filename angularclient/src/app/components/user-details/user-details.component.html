@@ -1,3 +1,26 @@
-<p>
-  user-details works!
-</p>
+<button id="close-button" mat-mini-fab class="option-button" color="warn" mat-icon-button (click)="closeDialog()">
+  <mat-icon fontSet="material-icons-outlined" matSuffix
+  >clear
+  </mat-icon>
+</button>
+<h1 mat-dialog-title>User Details</h1>
+<mat-dialog-content>
+  <div>
+    <div class="container">
+      <strong>ID: </strong>{{user.id}}
+    </div>
+
+    <div class="container">
+      <strong>Name: </strong>{{user.name}}
+    </div>
+
+    <div class="container">
+      <strong>Second name: </strong>{{user.secondName}}
+    </div>
+
+    <div class="container">
+      <strong>pin: </strong>{{user.pin}}
+    </div>
+
+  </div>
+</mat-dialog-content>

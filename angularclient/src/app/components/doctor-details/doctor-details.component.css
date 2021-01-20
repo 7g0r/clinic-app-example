@@ -1,0 +1,8 @@
+.container {
+    padding: 5px;
+    font-size: 15px;
+}
+
+#close-button {
+    float:right;
+}

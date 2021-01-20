@@ -30,6 +30,8 @@ import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog
 import {UserDetailsComponent} from './components/user-details/user-details.component';
 import {DoctorDetailsComponent} from './components/doctor-details/doctor-details.component';
 import {VisitService} from "./services/visit.service";
+import {AppDateAdapter} from "./utils/AppDateAdapter";
+import {VisitCreateComponent} from './components/visit-create/visit-create.component';
 
 
 @NgModule({
@@ -42,9 +44,18 @@ import {VisitService} from "./services/visit.service";
         VisitComponent,
         ConfirmDialogComponent,
         UserDetailsComponent,
-        DoctorDetailsComponent
+        DoctorDetailsComponent,
+        VisitCreateComponent,
+
     ],
     imports: [
+        /*FormsModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        NgxMatDatetimePickerModule,
+        NgxMatTimepickerModule,
+        NgxMatNativeDateModule,*/
         BrowserModule,
         BrowserAnimationsModule,
         MatIconModule,
@@ -69,13 +80,22 @@ import {VisitService} from "./services/visit.service";
             {path: '', redirectTo: 'home', pathMatch: 'full'},
             {path: 'users', component: UserComponent},
             {path: 'doctors', component: DoctorComponent},
-            {path: 'visits', component: VisitComponent}
+            {path: 'visits', component: VisitComponent},
+            {path: 'visits/create', component: VisitCreateComponent}
         ])
+    ],
+    entryComponents: [
+        UserDetailsComponent,
+        DoctorDetailsComponent
     ],
     providers:
         [UserService,
             DoctorService,
-            VisitService],
+            VisitService,
+            AppDateAdapter,
+            VisitCreateComponent,
+            HttpClientModule
+        ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

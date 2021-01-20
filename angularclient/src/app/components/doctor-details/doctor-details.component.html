@@ -1,3 +1,21 @@
-<p>
-  doctor-details works!
-</p>
+<button id="close-button" mat-mini-fab class="option-button" color="warn" mat-icon-button (click)="closeDialog()">
+  <mat-icon fontSet="material-icons-outlined" matSuffix
+  >clear
+  </mat-icon>
+</button>
+<h1 mat-dialog-title>Doctor Details</h1>
+<mat-dialog-content>
+  <div>
+    <div class="container">
+      <strong>ID: </strong>{{doctor.id}}
+    </div>
+
+    <div class="container">
+      <strong>Name: </strong>{{doctor.name}}
+    </div>
+
+    <div class="container">
+      <strong>Second name: </strong>{{doctor.secondName}}
+    </div>
+  </div>
+</mat-dialog-content>

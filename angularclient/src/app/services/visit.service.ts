@@ -33,4 +33,11 @@ export class VisitService {
   public delete(id: number): Observable<Visit> {
     return this.httpClient.delete<Visit>(this.API_URL + '/' + id);
   }
+  formatDate(date:Date):string{
+    const day = date.getDate();
+    const month = date.getMonth()+1;
+    const year = date.getFullYear();
+
+    return '${year}-${month}-${day}';
+  }
 }

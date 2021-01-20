@@ -25,8 +25,8 @@ public class VisitDto extends AbstractDto {
     private Long doctorId;
     private Long userId;
     private VisitStatus status;
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+   /* @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")*/
     @JsonProperty("date")
     private LocalDateTime visitDate;
 
