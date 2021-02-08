@@ -33,7 +33,7 @@ public class VisitController extends AbstractController<VisitService, VisitDto> 
         return visitService.findVisitsByDoctorIdAndDate(doctorId, date);
     }
 
-    @GetMapping(path = "/{id}/cancel")
+    @PutMapping(path = "/{id}/cancel")
     public void cancelVisit(@PathVariable("id") Long id, @RequestParam("userId") Long userId, @RequestParam("pin") Long pin) {
         visitService.changeStatus(id, userId, pin);
     }

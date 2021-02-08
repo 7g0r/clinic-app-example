@@ -81,7 +81,7 @@ public class VisitServiceImpl extends AbstractService<Visit, VisitDto> implement
             throw new WrongAuthDataException();
         }
     }
-    @Scheduled(cron = "0 * * * * MON-FRI")
+    @Scheduled(cron = "0 0/30 * * * MON-FRI")
     public void updateVisitsStatuses(){
         visitRepository.saveAll(visitRepository.findAllByStatusAndVisitDateBefore(ARRANGED, LocalDateTime.now().minusMinutes(30))
                 .stream()
